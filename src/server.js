@@ -17,6 +17,8 @@ const app = express();
 app.use(cors());
 app.use(morgan('dev'));
 
+//allows express to parse data types on the request.
+//   - body parsing: attaching a body to our request
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

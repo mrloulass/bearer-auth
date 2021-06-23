@@ -7,10 +7,8 @@ module.exports = async (req, res, next) => {
 
   if (!req.headers.authorization) { return _authError(); }
 
-  let basic = req.headers.authorization.split(' ');
-  let encodedString = basic.pop();
-  let decodedString = base64.decode(encodedString);
-  let [username, password] = decodedString.split(':');
+  let basic = req.headers.authorization.split(' ')[1];
+  let [username, password] = base64.decode(basic).split(':');
 
   try {
     req.user = await users.authenticateBasic(username, password)
